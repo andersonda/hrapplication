@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HRApplication.Data;
 using HRApplication.Services;
-using HRApplication.Models;
+
 
 
 namespace HRApplication
@@ -29,9 +29,6 @@ namespace HRApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDbContext<ProfileDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(
@@ -85,9 +82,6 @@ namespace HRApplication
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
             services.AddSingleton<IEmailSender, EmailSender>();
-
-            services.AddDbContext<ProfileContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ProfileContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
