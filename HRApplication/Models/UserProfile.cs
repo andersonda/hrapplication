@@ -7,10 +7,7 @@ namespace HRApplication.Models
 {
     public class UserProfile
     {
-        public int ID { get; set; }
-
-        // user ID from AspNetUser table
-        public string OwnerID { get; set; }
+        public string ID { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -14,6 +14,6 @@ namespace HRApplication.Models
 
         }
 
-        public DbSet<UserProfile> UserProfile { get; set; }
+       public DbSet<UserProfile> UserProfile { get; set; }
     }
 }

@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
@@ -22,7 +21,7 @@ namespace HRApplication.Migrations
 
             modelBuilder.Entity("HRApplication.Models.UserProfile", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -34,8 +33,6 @@ namespace HRApplication.Migrations
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
-
-                    b.Property<string>("OwnerID");
 
                     b.Property<string>("Phone");
 

@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace HRApplication.Data.Migrations
+namespace HRApplication.Migrations
 {
-    public partial class removeprofile : Migration
+    public partial class AddProfileTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -7,29 +7,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HRApplication.Models;
+using Microsoft.AspNetCore.Identity;
+using HRApplication.Data;
 
 namespace HRApplication.Pages.Profile
 {
     public class EditModel : PageModel
     {
         private readonly HRApplication.Models.UserProfileContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public EditModel(HRApplication.Models.UserProfileContext context)
+        public EditModel(HRApplication.Models.UserProfileContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
         public UserProfile UserProfile { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            UserProfile = await _context.UserProfile.SingleOrDefaultAsync(m => m.ID == id);
+            UserProfile = _context.UserProfile.Find(user.Id.ToString());
 
             if (UserProfile == null)
             {
@@ -56,7 +57,7 @@ namespace HRApplication.Pages.Profile
                 
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Index");
         }
     }
 }

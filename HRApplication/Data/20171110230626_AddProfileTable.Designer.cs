@@ -4,15 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
 namespace HRApplication.Migrations
 {
     [DbContext(typeof(UserProfileContext))]
-    [Migration("20171110185625_UserProfile")]
-    partial class UserProfile
+    [Migration("20171110230626_AddProfileTable")]
+    partial class AddProfileTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +22,7 @@ namespace HRApplication.Migrations
 
             modelBuilder.Entity("HRApplication.Models.UserProfile", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -36,8 +35,6 @@ namespace HRApplication.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("OwnerID");
-
                     b.Property<string>("Phone");
 
                     b.Property<string>("State");
@@ -46,7 +43,7 @@ namespace HRApplication.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("UserInfo");
+                    b.ToTable("UserProfile");
                 });
 #pragma warning restore 612, 618
         }
