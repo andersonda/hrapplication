@@ -34,7 +34,7 @@ namespace HRApplication.Pages.Profile
 
             if (UserProfile == null)
             {
-                return NotFound();
+                return RedirectToPage("Profile/Create");
             }
             return Page();
         }

@@ -22,8 +22,13 @@ namespace HRApplication.Pages.Profile
             _userManager = userManager;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (_context.UserProfile.Find(user.Id.ToString()) != null)
+            {
+                return Redirect("/Profile/Edit");
+            }
             return Page();
         }
 
