@@ -1,0 +1,37 @@
+@page
+@model HRApplication.Pages.Positions.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Position</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Position.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Position.Location)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Position.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Position.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Position.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Position.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Position.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
