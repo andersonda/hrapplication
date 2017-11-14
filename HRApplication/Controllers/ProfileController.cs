@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using HRApplication.Data;
 using HRApplication.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HRApplication.Controllers
 {
@@ -21,6 +22,7 @@ namespace HRApplication.Controllers
         }
 
         [Route("Profile")]
+        [Authorize]
         public async Task<IActionResult> IndexAsync()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);

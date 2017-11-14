@@ -80,7 +80,7 @@ namespace HRApplication
                 {
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
-                    options.Conventions.AuthorizePage("/Profile");
+                    options.Conventions.AuthorizeFolder("/Profile");
                     options.Conventions.AuthorizePage("/Profile/Create");
                     options.Conventions.AuthorizePage("/Profile/Edit");
                 });
