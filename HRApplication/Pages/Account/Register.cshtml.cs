@@ -76,7 +76,8 @@ namespace HRApplication.Pages.Account
                     await _emailSender.SendEmailConfirmationAsync(Input.Email, callbackUrl);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(Url.GetLocalUrl(returnUrl));
+                    //return LocalRedirect(Url.GetLocalUrl(returnUrl));
+                    return Redirect("/Profile");
                 }
                 foreach (var error in result.Errors)
                 {
