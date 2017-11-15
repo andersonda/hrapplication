@@ -21,33 +21,48 @@ namespace HRApplication.Pages.Positions
         }
 
         public IList<Position> Position { get;set; }
+
         public IList<SelectListItem> SearchCriteria { get; set; }
 
+        [BindProperty]
         public string SearchText { get; set; }
 
+        [BindProperty]
         public string SearchBy { get; set; }
 
         public async Task OnGetAsync()
         {
-            Position = await _context.Position.ToListAsync();
-            SearchCriteria = (from t in typeof(Position).GetProperties()
-                              select new SelectListItem { Text = t.Name, Value = t.Name}).ToList();
+            if(Position == null)
+            {
+                Position = await _context.Position.ToListAsync();
+            }
+            if(SearchCriteria == null)
+            {
+                SearchCriteria = (from t in typeof(Position).GetProperties()
+                                  select new SelectListItem { Text = t.Name, Value = t.Name }).ToList();
+            }
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            SearchCriteria = (from t in typeof(Position).GetProperties()
-                              select new SelectListItem { Text = t.Name, Value = t.Name }).ToList();
-
-            Position = await _context.Position.ToListAsync();
-
-            if (SearchText == null)
+            if(Position == null)
             {
-                ModelState.AddModelError("", "Enter Search Criteria");
+                Position = await _context.Position.ToListAsync();
             }
-            else if (SearchBy == null)
+            if(SearchCriteria == null)
+            {
+                SearchCriteria = (from t in typeof(Position).GetProperties()
+                                  select new SelectListItem { Text = t.Name, Value = t.Name }).ToList();
+            }
+
+
+            if (SearchBy == null)
             {
                 ModelState.AddModelError("", "Choose Search By");
+            }
+            else if (SearchText == null)
+            {
+                ModelState.AddModelError("", "Enter Search Criteria");
             }
             else
             {

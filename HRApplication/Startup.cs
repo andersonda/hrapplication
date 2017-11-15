@@ -83,6 +83,7 @@ namespace HRApplication
                     options.Conventions.AuthorizeFolder("/Profile");
                     options.Conventions.AuthorizePage("/Profile/Create");
                     options.Conventions.AuthorizePage("/Profile/Edit");
+                    options.Conventions.AuthorizeFolder("/Positions");
                 });
 
             // Register no-op EmailSender used by account confirmation and password reset during development
