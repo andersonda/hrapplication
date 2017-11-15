@@ -1,0 +1,66 @@
+@page
+@model HRApplication.Pages.Applications.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Application[0].ApplicantID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Application[0].PositionID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Application[0].ResumePath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Application[0].CoverLetterPath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Application[0].Experience)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Application[0].Status)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Application) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicantID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResumePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoverLetterPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
