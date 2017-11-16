@@ -19,7 +19,7 @@ namespace HRApplication.Models
 
     public enum ApplicationStatus
     {
-        Submitted,
+        Submitted, 
         Approved,
         Rejected
     }

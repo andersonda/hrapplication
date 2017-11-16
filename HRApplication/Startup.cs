@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using HRApplication.Data;
 using HRApplication.Services;
 using HRApplication.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HRApplication
 {
@@ -92,7 +93,7 @@ namespace HRApplication
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -115,6 +116,81 @@ namespace HRApplication
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            
+            CreateRolesAndUsers(serviceProvider).Wait();
+        }
+
+        private async Task CreateRolesAndUsers(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            string[] roleNames = { "Manager", "HR"};
+            IdentityResult roleResult;
+
+            foreach(var roleName in roleNames)
+            {
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                // ensure that the role does not exist
+                if (!roleExist)
+                {
+                    //create the roles and seed them to the database: 
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            // find the user with the manager email
+            var _manager = await UserManager.FindByEmailAsync("manager@company.com");
+            if(_manager == null)
+            {
+                var manager = new ApplicationUser
+                {
+                    UserName = "manager@company.com",
+                    Email = "manager@company.com",
+                };
+
+                string managerPassword = "6240ManagerP";
+                var createManager = await UserManager.CreateAsync(manager, managerPassword);
+                if (createManager.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(manager, "Manager");
+                }
+            }
+
+            // find the user with the hr1 email
+            var _hr1 = await UserManager.FindByEmailAsync("hr1@company.com");
+            if (_hr1 == null)
+            {
+                var hr1 = new ApplicationUser
+                {
+                    UserName = "hr1@company.com",
+                    Email = "hr1@company.com",
+                };
+
+                string hr1Password = "6240HR1P";
+                var createHr1 = await UserManager.CreateAsync(hr1, hr1Password);
+                if (createHr1.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(hr1, "HR");
+                }
+            }
+
+            // find the user with the hr2 email
+            var _hr2 = await UserManager.FindByEmailAsync("hr2@company.com");
+            if (_hr2 == null)
+            {
+                var hr2 = new ApplicationUser
+                {
+                    UserName = "hr2@company.com",
+                    Email = "hr2@company.com",
+                };
+
+                string hr2Password = "6240HR2P";
+                var createHr2 = await UserManager.CreateAsync(hr2, hr2Password);
+                if (createHr2.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(hr2, "HR");
+                }
+            }
         }
     }
 }
