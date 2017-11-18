@@ -58,5 +58,45 @@ namespace HRApplication.Models
             
             return res;
         }
+
+        public List<Application> GetApplicationsForUser(string userId)
+        {
+            List<Application> res = new List<Application>();
+
+            foreach(Application application in Application.ToList())
+            {
+                if (application.ApplicantID.Equals(userId))
+                {
+                    res.Add(application);
+                }
+            }
+
+            return res;
+        }
+
+        public List<Application> GetApplicationsForPosition(string positionID)
+        {
+            List<Application> res = new List<Application>();
+
+            foreach (Application application in Application.ToList())
+            {
+                if (application.PositionID.Equals(positionID))
+                {
+                    res.Add(application);
+                }
+            }
+
+            return res;
+        }
+
+        public List<Position> GetPositionsForApplications(List<Application> applications)
+        {
+            List<Position> res = new List<Position>();
+            foreach(Application application in applications)
+            {
+                res.Add(Position.SingleOrDefault(m => m.ID == application.PositionID));
+            }
+            return res;
+        }
     }
 }

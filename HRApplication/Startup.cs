@@ -13,6 +13,8 @@ using HRApplication.Data;
 using HRApplication.Services;
 using HRApplication.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace HRApplication
 {
@@ -98,6 +100,10 @@ namespace HRApplication
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
             services.AddSingleton<IEmailSender, EmailSender>();
+
+            services.AddSingleton<IFileProvider>(
+                new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
