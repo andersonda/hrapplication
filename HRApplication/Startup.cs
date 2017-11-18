@@ -95,6 +95,8 @@ namespace HRApplication
                     options.Conventions.AuthorizePage("/Positions/Create", "RequireHR");
                     options.Conventions.AuthorizePage("/Positions/Edit", "RequireHR");
                     options.Conventions.AuthorizePage("/Positions/Delete", "RequireHR");
+                    options.Conventions.AuthorizeFolder("/Applications");
+                    options.Conventions.AuthorizePage("/Positions/PositionApplications", "RequireHR");
                 });
 
             // Register no-op EmailSender used by account confirmation and password reset during development

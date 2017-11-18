@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,11 +9,11 @@ using HRApplication.Models;
 
 namespace HRApplication.Pages.Applications
 {
-    public class IndexModel : PageModel
+    public class PositionApplicationsModel : PageModel
     {
         private readonly HRApplication.Models.PositionContext _context;
 
-        public IndexModel(HRApplication.Models.PositionContext context)
+        public PositionApplicationsModel(HRApplication.Models.PositionContext context)
         {
             _context = context;
         }

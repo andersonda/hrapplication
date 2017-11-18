@@ -81,7 +81,7 @@ namespace HRApplication.Pages.Applications
             _context.Application.Add(Application);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./MyApplications");
         }
     }
 }

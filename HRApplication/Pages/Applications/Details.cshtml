@@ -10,30 +10,41 @@
 <div>
     <h4>Application</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <h4>Application Info</h4>
+    <dl class="dl-horizontal">   
         <dt>
-            @Html.DisplayNameFor(model => model.Application.ApplicantID)
+            @Html.DisplayNameFor(model => model.Position.Location)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Application.ApplicantID)
+            @Html.DisplayFor(model => model.Position.Location)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Application.PositionID)
+            @Html.DisplayNameFor(model => model.Position.Title)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Application.PositionID)
+            @Html.DisplayFor(model => model.Position.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Position.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Position.Description)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Application.ResumePath)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Application.ResumePath)
+            <form asp-controller="Download" asp-action="Download" asp-route-id="@Model.Application.ResumePath">
+                <input type="submit" value="Download" class="btn btn-default" />
+            </form>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Application.CoverLetterPath)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Application.CoverLetterPath)
+            <form asp-controller="Download" asp-action="Download" asp-route-id="@Model.Application.CoverLetterPath">
+                <input type="submit" value="Download" class="btn btn-default" />
+            </form>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Application.Experience)
@@ -48,6 +59,61 @@
             @Html.DisplayFor(model => model.Application.Status)
         </dd>
     </dl>
+    <hr />
+    @if (User.IsInRole("HR"))
+    {
+    <h4>Applicant Info</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Zip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Zip)
+        </dd>
+    </dl>
+    }
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Application.ID">Edit</a> |
