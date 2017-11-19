@@ -86,6 +86,7 @@ namespace HRApplication
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
+                    options.Conventions.AuthorizePage("/Index");
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
                     options.Conventions.AuthorizeFolder("/Profile");
