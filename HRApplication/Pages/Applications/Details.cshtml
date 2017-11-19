@@ -60,7 +60,7 @@
         </dd>
     </dl>
     <hr />
-    @if (User.IsInRole("HR"))
+    @if (User.IsInRole("HR") || User.IsInRole("Manager"))
     {
     <h4>Applicant Info</h4>
     <dl class="dl-horizontal">
@@ -115,7 +115,7 @@
     </dl>
     }
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Application.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+<div class="btn-group">
+    <a class="btn" asp-page="./Edit" asp-route-id="@Model.Application.ID">Edit</a> |
+    <a class="btn" asp-page="./Index">Back to List</a>
 </div>

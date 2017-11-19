@@ -8,9 +8,12 @@ namespace HRApplication.Models
 {
     public class PositionContext : DbContext
     {
-        public PositionContext(DbContextOptions<PositionContext> options)
+        private readonly UserProfileContext _context;
+
+        public PositionContext(DbContextOptions<PositionContext> options, UserProfileContext context)
             : base(options)
         {
+            _context = context;
         }
 
         public DbSet<Position> Position { get; set; }
@@ -95,6 +98,16 @@ namespace HRApplication.Models
             foreach(Application application in applications)
             {
                 res.Add(Position.SingleOrDefault(m => m.ID == application.PositionID));
+            }
+            return res;
+        }
+        
+        public List<UserProfile> GetUserProfilesForApplications(List<Application> applications)
+        {
+            List<UserProfile> res = new List<UserProfile>();
+            foreach(Application application in applications)
+            {
+                res.Add(_context.UserProfile.SingleOrDefault(m => m.ID == application.ApplicantID));
             }
             return res;
         }

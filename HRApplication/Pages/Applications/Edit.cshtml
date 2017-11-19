@@ -9,40 +9,46 @@
 
 <h4>Application</h4>
 <hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Position.Location)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Position.Location)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Position.Title)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Position.Title)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Position.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Position.Description)
+    </dd>
+</dl>
+<hr />
+
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Application.ID" />
-            <div class="form-group">
-                <label asp-for="Application.ApplicantID" class="control-label"></label>
-                <input asp-for="Application.ApplicantID" class="form-control" />
-                <span asp-validation-for="Application.ApplicantID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Application.PositionID" class="control-label"></label>
-                <input asp-for="Application.PositionID" class="form-control" />
-                <span asp-validation-for="Application.PositionID" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Application.ResumePath" class="control-label"></label>
-                <input asp-for="Application.ResumePath" class="form-control" />
+                <input type="file" name="resume" class="form-control" />
                 <span asp-validation-for="Application.ResumePath" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Application.CoverLetterPath" class="control-label"></label>
-                <input asp-for="Application.CoverLetterPath" class="form-control" />
+                <input type="file" name="coverLetter" class="form-control" />
                 <span asp-validation-for="Application.CoverLetterPath" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Application.Experience" class="control-label"></label>
                 <input asp-for="Application.Experience" class="form-control" />
                 <span asp-validation-for="Application.Experience" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Application.Status" class="control-label"></label>
-                <select asp-for="Application.Status" class="form-control"></select>
-                <span asp-validation-for="Application.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

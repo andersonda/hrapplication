@@ -18,11 +18,14 @@ namespace HRApplication.Pages.Applications
             _context = context;
         }
 
-        public IList<Application> Application { get;set; }
+        public List<Application> Application { get;set; }
 
-        public async Task OnGetAsync()
+        public List<UserProfile> Applicants { get; set; }
+
+        public async Task OnGetAsync(string id)
         {
-            Application = await _context.Application.ToListAsync();
+            Application = _context.GetApplicationsForPosition(id);
+            Applicants = _context.GetUserProfilesForApplications(Application);
         }
     }
 }

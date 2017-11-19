@@ -31,10 +31,11 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-page ="/Applications/Create" asp-route-id="@Model.Position.ID">Apply</a> |
+<div class="btn-group">
+    <a class="btn" asp-page ="/Applications/Create" asp-route-id="@Model.Position.ID">Apply</a>
     @if (User.IsInRole("HR")){ 
-    <a asp-page="./Edit" asp-route-id="@Model.Position.ID">Edit</a> 
+    <a class="btn" asp-page="./Edit" asp-route-id="@Model.Position.ID">Edit</a>
+    <a class="btn" asp-page="/Applications/PositionApplications" asp-route-id="@Model.Position.ID">Manage Applications</a>
     }
-    <a asp-page="./Index">Back to List</a>
+    <a class="btn" asp-page="./Index">Back to List</a>
 </div>
