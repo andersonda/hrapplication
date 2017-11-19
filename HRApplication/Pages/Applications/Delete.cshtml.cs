@@ -21,6 +21,8 @@ namespace HRApplication.Pages.Applications
         [BindProperty]
         public Application Application { get; set; }
 
+        public Position Position { get; set; }
+
         public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
@@ -34,6 +36,9 @@ namespace HRApplication.Pages.Applications
             {
                 return NotFound();
             }
+
+            Position = await _context.Position.SingleOrDefaultAsync(m => m.ID == Application.PositionID);
+
             return Page();
         }
 
@@ -52,7 +57,7 @@ namespace HRApplication.Pages.Applications
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./MyApplications");
         }
     }
 }
