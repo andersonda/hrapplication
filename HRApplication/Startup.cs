@@ -36,6 +36,8 @@ namespace HRApplication
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<PositionContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<NotificationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NotificationContext")));
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>(
                 options =>
